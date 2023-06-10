@@ -1,0 +1,19 @@
+<div class="h-100 w-screen max-w-screen-md mx-auto flex items-center justify-center bg-teal-lightest font-sans">
+	<div class="bg-white rounded shadow p-6 m-4 w-full">
+        <div class="mb-4">
+            <h1 class="text-grey-darkest">Todo List</h1>
+            <form class="flex mt-4" (submit)="addRecord()">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Wash my car" name="title" [(ngModel)]="newRecord.title">
+                <button class="flex-no-shrink p-2 rounded bg-blue-700 text-white border-none w-32">Add</button>
+            </form>
+        </div>
+        <div>
+            <div *ngFor="let record of records" class="flex mb-4 items-center">
+                <input type="checkbox" class="mr-2 form-checkbox h-5 w-5 text-gray-600" name="status" [(ngModel)]="record.status" (change)="updateRecord(record)">
+                <p *ngIf="record.status" class="w-full text-gray-900">{{ record.title }}</p>
+                <p *ngIf="!record.status" class="w-full line-through text-gray-400">{{ record.title }}</p>
+                <button (click)="deleteRecord(record._id)" class="flex-no-shrink p-2 ml-2 border-none rounded text-white bg-red-500">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
